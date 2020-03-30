@@ -1,4 +1,3 @@
-#
 pList = [0,1]
 count = int(input())
 

@@ -21,7 +21,7 @@ def sorting2(strings, n): #index 순회 (뒤->앞)
 
 def sorting3(strings, n): #lambda
     strings.sort()
-    strings.sort(key=lambda ob : ob[n])
+    strings.sort(key=lambda x: x[n])
     print(strings)
 
 if __name__ == '__main__':

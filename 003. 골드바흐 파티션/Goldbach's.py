@@ -27,4 +27,4 @@ def gold(anum, sList):
 if __name__ == '__main__':
     n, cmds=3,[8,10,16]
     for _ in range(n):
-        gold(cmds[_], sosu(cmds[_]))
+        gold(cmds[_], sosu(cmds[_])) #

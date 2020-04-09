@@ -1,24 +1,23 @@
 def solution(answers):
+    pattern1 = [1, 2, 3, 4, 5]
+    pattern2 = [2, 1, 2, 3, 2, 4, 2, 5]
+    pattern3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    score = [0, 0, 0]
     result = []
-    answer = [0] * 3
-    a = '12345'
-    b = '21232425'
-    c = '3311224455'
 
-    for i in range(len(answers)):
-        if answers[i] == int(a[i]):
-            answer[0] += 1
-        if answers[i] == int(b[i]):
-            answer[1] += 1
-        if answers[i] == int(c[i]):
-            answer[2] += 1
-    result.append(answer.index(max(answer)))
-    answer.remove(max(answer))
-    print(result[len(result)-1], max(answer))
-    while result[len(result)-1] == max(answer):
-        print(answer, result)
-        result.append(answer.index(max(answer)))
-        answer.remove(max(answer))
+    for idx, answer in enumerate(answers):
+        print(answer, pattern1[idx%len(pattern1)])
+        if answer == pattern1[idx%len(pattern1)]:
+            score[0] += 1
+        if answer == pattern1[idx%len(pattern2)]:
+            score[1] += 1
+        if answer == pattern1[idx%len(pattern3)]:
+            score[2] += 1
+
+    for idx, s in enumerate(score):
+        if s == max(score):
+            result.append(idx+1)
+
     return result
 
 # answers = [1,2,3,4,5]

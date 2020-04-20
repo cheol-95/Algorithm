@@ -1,10 +1,19 @@
-def solution(scoville, K):
+import heapq
+def solution(scoville, k):
     answer = 0
-    for i in range(len(scoville)):
-        if scoville[i] < 7:
-            scoville[i+1] = scoville[i] + scoville[i+1]*2
-            answer += 1
+    heap = []
+    for num in scoville:
+        heapq.heappush(heap, num)
+
+    while heap[0] < k:
+        try:
+            heapq.heappush(heap, heapq.heappop(heap) + 2*heapq.heappop(heap))
+        except IndexError:
+            return -1
+        answer += 1
+
     return answer
+
 
 scoville, k = [1,2,3,9,10,12], 7
 print(solution(scoville, k))

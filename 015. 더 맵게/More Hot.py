@@ -1,13 +1,11 @@
 import heapq
 def solution(scoville, k):
     answer = 0
-    heap = []
-    for num in scoville:
-        heapq.heappush(heap, num)
+    heapq.heapify(scoville)
 
-    while heap[0] < k:
+    while scoville[0] < k:
         try:
-            heapq.heappush(heap, heapq.heappop(heap) + 2*heapq.heappop(heap))
+            heapq.heappush(scoville, heapq.heappop(scoville) + 2*heapq.heappop(scoville))
         except IndexError:
             return -1
         answer += 1

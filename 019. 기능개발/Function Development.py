@@ -10,7 +10,7 @@ def solution(progresses, speeds):
             cnt += 1
             if not progresses:
                 break
-        if cnt != 0:
+        if cnt:
             answer.append(cnt)
     return answer
 

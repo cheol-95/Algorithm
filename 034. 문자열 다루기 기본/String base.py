@@ -1,6 +1,6 @@
 def solution(s):
     tmp = list(s)
-    if len(s) == 4 or len(s) == 6:
+    if len(s) in (4,6):
         for i in tmp:
             try:
                 int(i)
@@ -11,3 +11,8 @@ def solution(s):
 
 s = 'a234'
 print(solution(s))
+
+'''
+def solution(s):
+    return s.isdigit() and len(s) in (4,6)
+'''

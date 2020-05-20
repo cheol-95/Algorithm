@@ -1,15 +1,10 @@
 def solution(citations):
-    answer = []
-    for i in citations:
-        tmp = list(map(lambda x:x>=i, citations))
-        cnt = tmp.count(True)
-        insert = i
-        for index,value in enumerate(tmp):
-            if not value and citations[index] > cnt:
-                insert = 0
-                break
-        answer.append(insert)
-    return max(answer)
+    for i in range(len(citations),0,-1):
+        up = list(map(lambda x:x>=i, citations)).count(True)
+        down = list(map(lambda x:x<i, citations)).count(True)
+        if up >= i and down <= i:
+            return i
+    return 0
 
 citations = [3,0,6,1,5]
 print(solution(citations))

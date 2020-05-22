@@ -1,5 +1,4 @@
 def solution(brown, yellow):
-    answer = []
     total = brown+yellow
     for height in range(3,brown):
         if total < height**2:

@@ -1,3 +1,14 @@
+def solution(n):
+    cnt = bin(n).count('1')
+    while True:
+        n+= 1
+        if cnt == bin(n).count('1'):
+            return n
+
+n = 78
+print(solution(n))
+
+'''
 def count(num):
     cnt = 0
     while num > 0:
@@ -12,10 +23,4 @@ def solution(n):
         n+=1
         if count(n) == cnt:
             return n
-
-n = 78
-print(solution(n))
-# while n > 0:
-#     tmp = n%2
-#     n=n//2
-#     print(tmp)
+'''

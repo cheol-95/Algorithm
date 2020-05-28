@@ -17,3 +17,7 @@ def solution(s):
 s = '3people unFollowed me'
 # s = 'for the last  week	'
 print(solution(s))
+
+'''
+return s.title()
+'''

@@ -4,6 +4,8 @@ def solution(d, budget):
         tmp_d = [_ for _ in d]
         cnt += 1
         tmp = 0
+        if budget < min(d):
+            return 0
         if cnt > len(d):
             return cnt -1
         for i in range(cnt):

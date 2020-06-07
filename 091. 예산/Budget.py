@@ -7,6 +7,7 @@ def solution(d, budget):
         answer += 1
         if sum > budget:
             return answer -1
+    return answer
 
 d, budget = [1, 3, 2, 5, 4], 9
 # d, budget = [2,2,3,3], 10

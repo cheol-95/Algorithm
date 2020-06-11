@@ -5,6 +5,7 @@ def solution(n, arr1, arr2):
             sum = ' '*(n-len(sum))+sum
         arr1[i] = sum
     return arr1
+
 n, arr1, arr2 = 5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]
 n, arr1, arr2 = 6, [46, 33, 33, 22, 31, 50], [27, 56, 19, 14, 14, 10]
 print(solution(n,arr1,arr2))

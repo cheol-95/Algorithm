@@ -1,5 +1,5 @@
 import heapq
-N = int(input())
+N = int(input()) 
 heap = []
 for i in range(N):
     heapq.heappush(heap, int(input()))

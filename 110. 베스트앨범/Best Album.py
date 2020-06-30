@@ -8,20 +8,16 @@ def solution(genres, plays):
         tmp = music[genres[i]]
         tmp.append([i, plays[i]])
         music[genres[i]] = tmp
+    rank = sorted(count.items(), key=lambda x:x[1], reverse=True)
 
-    cnt = []
-    for i in count:
-        cnt.append([i, count[i]])
-    cnt.sort(key=lambda x:x[1], reverse=True)
-
-    for i in [cnt[0][0], cnt[1][0]]:
-        tmp = music[i]
-        tmp = sorted(tmp, key=lambda x: x[0])
-        tmp = sorted(tmp, key=lambda x: x[1], reverse=True)
-        answer += list(map(lambda x: x[0], tmp[:2]))
+    for key in rank:
+        play_list = music[key[0]]
+        play_list = sorted(play_list, key=lambda x: (-x[1], x[0]))
+        for i in range(len(play_list)):
+            if i == 2:
+                break
+            answer.append(play_list[i][0])
     return answer
-
-
 
 genres, plays = ["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]
 print(solution(genres, plays))

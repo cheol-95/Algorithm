@@ -5,7 +5,7 @@ def solution(jobs):
     answer = 0
     wait = []
     length = len(jobs)
-    count = 0
+    count = 0 
     while(count<length):
         for job in jobs:
             if last < job[0] <= now:

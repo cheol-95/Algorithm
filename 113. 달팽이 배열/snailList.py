@@ -8,9 +8,7 @@ for p in range(n):
     x = x + status
     snail[y][x] = '# '
 n -= 1
-while True:
-    if n <= 0:
-        break
+while n > 0:
     for p in range(n):
         y += status
         snail[y][x] = '# '

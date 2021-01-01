@@ -1,16 +1,12 @@
-start_time, end_time = 1, 0
-tmp = [0, 0]
+times = [list(map(int, input().split())) for _ in range(int(input()))]
+times.sort(key = lambda time: time[0])
+times.sort(key = lambda time: time[1])
 
-n = int(input())
-
-times = [list(map(int, input().split())) for _ in range(n)]
-
-times.sort(key = lambda x: x[0])
+cnt, start = 0, 0
 
 for time in times:
-    if time[0] >= start_time:
-        tmp = time
+    if time[0] >= start:
+        start = time[1]
+        cnt += 1
 
-print(times)
-
-
+print(cnt)

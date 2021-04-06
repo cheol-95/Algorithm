@@ -1,23 +1,22 @@
+import collections
 def solution(genres, plays):
-    answer = []
-    sgenres = list(set(genres))
-    count, music = {x:0 for x in sgenres}, {x:[] for x in sgenres}
+    result = []
+    g_plays = collections.defaultdict(dict)
+    for i, [g, p] in enumerate(zip(genres, plays)):
+        if not g_plays[g]:
+            g_plays[g] = {'plays': 0, 'music': []}
 
-    for i in range(len(genres)):
-        count[genres[i]] += plays[i]
-        tmp = music[genres[i]]
-        tmp.append([i, plays[i]])
-        music[genres[i]] = tmp
-    rank = sorted(count.items(), key=lambda x:x[1], reverse=True)
+        g_plays[g]['plays'] += p
+        g_plays[g]['music'].append([i, p])
 
-    for key in rank:
-        play_list = music[key[0]]
-        play_list = sorted(play_list, key=lambda x: (-x[1], x[0]))
-        for i in range(len(play_list)):
-            if i == 2:
-                break
-            answer.append(play_list[i][0])
-    return answer
+    music = sorted(g_plays.items(), key=lambda x: x[1]['plays'], reverse=True)
+    for i in music:
+        musics = i[1]['music']
+        musics.sort(key=lambda x: x[0])
+        musics.sort(key=lambda x: x[1], reverse=True)
+        result += list(map(lambda x: x[0], musics))[:2]
+
+    return result
 
 genres, plays = ["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]
 print(solution(genres, plays))

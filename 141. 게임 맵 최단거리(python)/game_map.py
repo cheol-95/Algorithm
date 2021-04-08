@@ -1,26 +1,24 @@
 import collections
 
 def solution(maps):
-    max_y, max_x = len(maps), len(maps[0])
-    queue = collections.deque([[0, 0, 1]])
-    position = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+    my, mx = len(maps), len(maps[0])
+    dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
+    queue = collections.deque([[0, 0]])
     while queue:
-        y, x, cnt = queue.popleft()
-        maps[y][x] = 0
+        y, x = queue.popleft()
 
-        for ny, nx in position:
-            dy, dx = ny + y, nx + x
+        for dy, dx in dirs:
+            ny, nx = y + dy, x + dx
 
-            if y == max_y - 1 and x == max_x - 1:
-                return cnt
+            if ny == my - 1 and nx == mx-1:
+                return maps[y][x] + 1
 
-            if 0 <= dy < max_y and 0 <= dx < max_x and maps[dy][dx] == 1:
-                maps[dy][dx] = 0
-                queue.append([dy, dx, cnt + 1])
+            if 0 <= ny < my and 0 <= nx < mx and maps[ny][nx] == 1:
+                maps[ny][nx] = maps[y][x] + 1
+                queue.append([ny, nx])
 
     return -1
-
 
 maps = [[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,1],[0,0,0,0,1]]
 print(solution(maps))

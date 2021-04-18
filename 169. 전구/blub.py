@@ -1,38 +1,33 @@
-def start_switch(n, blubs, target, status):
-    count = 0
-    if status:
-        count += 1
-        blubs[0] = (blubs[0] + 1) % 2
-        blubs[1] = (blubs[1] + 1) % 2
+def change(n):
+    return (n+1) % 2
 
-    for i in range(1, n-1):
-        if blubs[i-1] != target[i-1]:
+
+def set_pair(now, count):
+    if count:
+        now[:2] = [change(now[0]), change(now[1])]
+
+    for i in range(1, N):
+        if now[i-1] != target[i-1]:
             count += 1
-            blubs[i - 1] = (blubs[i - 1] + 1) % 2
-            blubs[i] = (blubs[i] + 1) % 2
-            blubs[i + 1] = (blubs[i + 1] + 1) % 2
-
-    if target == blubs:
-        return count
-    count += 1
-    blubs[i] = (blubs[i] + 1) % 2
-    blubs[i + 1] = (blubs[i + 1] + 1) % 2
-
-    if target == blubs:
-        return count
-    else:
-        return False
+            now[i-1] = change(now[i-1])
+            now[i] = change(now[i])
+            if i < N-1:
+                now[i+1] = change(now[i+1])
+    return count if now == target else -1
 
 
-n = int(input())
-b = list(map(int, list(input())))
-t = list(map(int, list(input())))
+N = int(input())
+now = list(map(int, input()))
+target = list(map(int, input()))
 
-tmp = start_switch(n, b, t, 1)
-if tmp:
-    print(tmp)
+res1 = set_pair(now[:], 0)
+res2 = set_pair(now[:], 1)
 
-tmp = start_switch(n, b, t, 0)
-if tmp:
-    print(tmp)
-
+if res1 >= 0 and  res2 >= 0:
+    print(min(res1, res2))
+elif res1 >= 0 and res2 < 0:
+    print(res1)
+elif res1 < 0 and res2 >= 0:
+    print(res2)
+else:
+    print(-1)
